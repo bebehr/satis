@@ -1,0 +1,61 @@
+{
+  "name": "bebehr/satis",
+  "description": "A static Composer repository",
+  "license": "MIT",
+  "type": "project",
+  "keywords": [
+    "package",
+    "repository",
+    "generator",
+    "static",
+    "composer"
+  ],
+  "authors": [
+    {
+      "name": "bebehr",
+      "homepage": "https://github.com/bebehr"
+    }
+  ],
+  "homepage": "https://github.com/bebehr/satis",
+  "support": {
+    "issues": "https://github.com/bebehr/satis/issues",
+    "source": "https://github.com/bebehr/satis"
+  },
+  "require": {
+    "php": "^8.3",
+    "ext-zip": "*",
+    "composer/satis": "dev-main"
+  },
+  "require-dev": {
+    "ext-json": "*",
+    "ergebnis/composer-normalize": "^2.52"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "composer/satis": true,
+      "ergebnis/composer-normalize": true
+    },
+    "platform": {
+      "php": "8.3.0"
+    },
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "composer-normalize": {
+      "indent-size": 2,
+      "indent-style": "space"
+    }
+  },
+  "scripts": {
+    "test:composer": [
+      "@composer validate --strict",
+      "@composer check-platform-reqs",
+      "@composer normalize --dry-run",
+      "@composer audit",
+      "@composer outdated --direct"
+    ]
+  }
+}
