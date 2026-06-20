@@ -1,0 +1,27 @@
+# Auto detect text files and enforce LF normalization
+* text=auto eol=lf
+
+# Source code
+*.json text
+
+# Documentation
+*.md     text diff=markdown
+LICENSE  text
+*README* text
+
+# Configs
+.editorconfig  text
+.gitattributes text
+*.lock         text -diff
+
+# Ignore files
+*.*ignore text
+
+#
+# Exclude files from exporting
+#
+
+/.editorconfig  export-ignore
+/.gitattributes export-ignore
+/.gitignore     export-ignore
+/README.md      export-ignore
