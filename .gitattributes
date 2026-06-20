@@ -3,6 +3,7 @@
 
 # Source code
 *.json text
+*.sh   text
 
 # Documentation
 *.md     text diff=markdown
@@ -13,6 +14,7 @@ LICENSE  text
 .editorconfig  text
 .gitattributes text
 *.lock         text -diff
+*.yml          text
 
 # Ignore files
 *.*ignore text
@@ -24,4 +26,5 @@ LICENSE  text
 /.editorconfig  export-ignore
 /.gitattributes export-ignore
 /.gitignore     export-ignore
+/grumphp.yml    export-ignore
 /README.md      export-ignore

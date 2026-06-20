@@ -1,0 +1,22 @@
+grumphp:
+  ascii: ~
+  parallel:
+    max_workers: 2
+  tasks:
+    composer:
+      strict: true
+    composer_normalize:
+      indent_size: 2
+      indent_style: space
+      verbose: true
+    file_size: ~
+    git_commit_message: ~
+    jsonlint:
+      detect_key_conflicts: true
+    phpversion: ~
+    securitychecker_composeraudit: ~
+    shell:
+      scripts:
+        - ['git', 'diff', '--check']
+        - ['bash', './tools/scripts/git.attributes.check.sh']
+    yamllint: ~
