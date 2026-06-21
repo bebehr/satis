@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -43,13 +45,9 @@ jobs:
             ${{ runner.os }}-satis-deploy-
 
       - name: Install Satis dependencies
-        env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
         run: composer install --prefer-dist --no-progress
 
       - name: Build Satis Repository
-        env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
         run: vendor/bin/satis build satis.json
 
       - name: Setup Pages
