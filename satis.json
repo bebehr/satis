@@ -1,0 +1,18 @@
+{
+  "name": "bebehr/satis",
+  "description": "Private Composer Repository",
+  "homepage": "https://bebehr.github.io/satis/",
+  "output-dir": "public",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/bebehr/acme.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/bebehr/metrics.git"
+    }
+  ],
+  "require-all": true,
+  "require-dependencies": true
+}
