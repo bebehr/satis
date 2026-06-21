@@ -51,12 +51,12 @@ jobs:
 
       - name: Install Satis dependencies
         env:
-          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ steps.app-token.outputs.token }}"}}'
+          COMPOSER_AUTH: '{"http-basic": {"github.com": {"username": "x-access-token", "password": "${{ steps.app-token.outputs.token }}"}}}'
         run: composer install --prefer-dist --no-progress
 
       - name: Build Satis Repository
         env:
-          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ steps.app-token.outputs.token }}"}}'
+          COMPOSER_AUTH: '{"http-basic": {"github.com": {"username": "x-access-token", "password": "${{ steps.app-token.outputs.token }}"}}}'
         run: vendor/bin/satis build satis.json
 
       - name: Setup Pages
