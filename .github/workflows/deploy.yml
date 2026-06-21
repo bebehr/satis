@@ -51,7 +51,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Build Satis Repository
-        run:
+        run: |
           git config --global url."git@github.com:".insteadOf "https://github.com/"
           vendor/bin/satis build satis.json
 
