@@ -39,9 +39,7 @@
       "ergebnis/composer-normalize": true,
       "phpro/grumphp-shim": true
     },
-    "platform": {
-      "php": "8.3.0"
-    },
+    "optimize-autoloader": true,
     "preferred-install": "dist",
     "sort-packages": true
   },
@@ -57,7 +55,6 @@
   "scripts": {
     "test:composer": [
       "@composer validate --strict",
-      "@composer check-platform-reqs",
       "@composer normalize --dry-run",
       "@composer audit",
       "@composer outdated --direct"
