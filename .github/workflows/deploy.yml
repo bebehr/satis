@@ -32,6 +32,11 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
+      - name: Configure Git for GitHub App Token
+        run: |
+          git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf "https://github.com/"
+          git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf "git@github.com:"
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -50,13 +55,9 @@ jobs:
             ${{ runner.os }}-satis-deploy-
 
       - name: Install Satis dependencies
-        env:
-          COMPOSER_AUTH: '{"http-basic": {"github.com": {"username": "x-access-token", "password": "${{ steps.app-token.outputs.token }}"}}}'
         run: composer install --prefer-dist --no-progress
 
       - name: Build Satis Repository
-        env:
-          COMPOSER_AUTH: '{"http-basic": {"github.com": {"username": "x-access-token", "password": "${{ steps.app-token.outputs.token }}"}}}'
         run: vendor/bin/satis build satis.json
 
       - name: Setup Pages
