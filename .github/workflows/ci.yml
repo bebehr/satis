@@ -52,20 +52,6 @@ jobs:
       - name: Check platform requirements
         run: composer check-platform-reqs
 
-      - name: Check code formatting (Normalize)
-        run: composer normalize --dry-run
+      - name: Run GrumPHP Checks
+        run: vendor/bin/grumphp run
 
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          coverage: none
-
-      - name: Run Security Audit
-        run: composer audit
