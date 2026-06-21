@@ -54,4 +54,3 @@ jobs:
 
       - name: Run GrumPHP Checks
         run: vendor/bin/grumphp run
-
