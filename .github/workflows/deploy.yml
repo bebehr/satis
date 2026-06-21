@@ -24,8 +24,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Generate Ephemeral GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v1
         with:
-          token: ${{ secrets.PAT_TOKEN }}
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -45,9 +50,13 @@ jobs:
             ${{ runner.os }}-satis-deploy-
 
       - name: Install Satis dependencies
+        env:
+          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ steps.app-token.outputs.token }}"}}'
         run: composer install --prefer-dist --no-progress
 
       - name: Build Satis Repository
+        env:
+          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ steps.app-token.outputs.token }}"}}'
         run: vendor/bin/satis build satis.json
 
       - name: Setup Pages
