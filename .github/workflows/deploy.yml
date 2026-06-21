@@ -31,6 +31,7 @@ jobs:
           php-version: '8.3'
           extensions: json, zip
           coverage: none
+          tools: composer:v2
 
       - name: Cache Composer packages
         id: composer-cache
@@ -42,12 +43,14 @@ jobs:
             ${{ runner.os }}-satis-deploy-
 
       - name: Install Satis dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
         run: composer install --prefer-dist --no-progress
 
       - name: Build Satis Repository
-        run: vendor/bin/satis build satis.json
         env:
           COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: vendor/bin/satis build satis.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
